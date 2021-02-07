@@ -31,7 +31,7 @@ type MultiPart struct {
 	// Children holds all nested multipart message parts.
 	// Only set if MimeType starts with multipart/.
 	// Mutally exclusive with Body.
-	Children []MultiPart `json:"children,omitempty"`
+	Children []*MultiPart `json:"children,omitempty"`
 	// Body is the actual body of the multipart message. Only set
 	// if this part is not a multipart message by itself.
 	Body []byte `json:"body,omitempty"`
@@ -158,7 +158,7 @@ func ParseMIMEBody(ctx context.Context, partHeader textproto.MIMEHeader, rawBody
 				logger.Errorf(ctx, "failed to parse part: %s", err)
 				continue
 			}
-			result.Children = append(result.Children, *child)
+			result.Children = append(result.Children, child)
 		}
 	} else {
 		body, err := ioutil.ReadAll(bodyReader)
