@@ -1,2 +1,3 @@
 # mailbox
-Simple Go package for fetching mails from IMAP
+
+Simple Go package for fetching mails from IMAP.
