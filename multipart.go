@@ -182,7 +182,8 @@ func decodeBody(charsetStr, encoding string, body io.Reader) (io.Reader, error) 
 	}
 
 	switch strings.ToLower(encoding) {
-	case "", "7bit":
+	case "", "7bit", "8bit":
+		// nothing to do
 	case "quoted-printable":
 		// TODO(ppacher): multipart.Reader.NextPart() transparently converts
 		// a quoted-printable already so we might get rid of this one
